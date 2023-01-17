@@ -7,15 +7,14 @@ const events = [];
 const jsonParser = bodyParser.json();
 
 app.post("/log-event", jsonParser, (req, res) => {
-  console.log("New incoming event log");
-  console.log(req.body);
   const eventId = uuidv4();
   events.push({ id: eventId, event: req.body });
+  console.info(`Event ${eventId} created for element ${JSON.stringify(req.body)}`)
   res.json({ id: eventId, message: "Event logged successfully" });
 });
 
 app.get("/:id", (req, res) => {
-  res.json(events.filter((e) => e.id === req.params.id));
+  res.json('OI');
 });
 
 app.listen(3000, () => {
